@@ -12,7 +12,7 @@ interface Props {
   cut?: number;
   /** Image size relative to the box (0–1). */
   scale?: number;
-  /** Multiply blend — for artwork that is itself green and would vanish on the accent. */
+  /** Darken + multiply — for artwork that is itself green and would vanish on the accent. */
   blend?: boolean;
   priority?: boolean;
   className?: string;
@@ -58,7 +58,7 @@ export default function ChamferImage({
           height={900}
           priority={priority}
           className="h-auto object-contain select-none pointer-events-none drop-shadow-[0_24px_30px_rgba(0,0,0,0.25)]"
-          style={{ width: `${scale * 100}%`, maxHeight: `${scale * 100}%`, mixBlendMode: blend ? "multiply" : undefined }}
+          style={{ width: `${scale * 100}%`, maxHeight: `${scale * 100}%`, mixBlendMode: blend ? "multiply" : undefined, filter: blend ? "brightness(0.55) contrast(1.45) saturate(1.15)" : undefined }}
         />
       </motion.div>
 

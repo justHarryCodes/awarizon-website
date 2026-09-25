@@ -62,23 +62,23 @@ function ComparisonIllustration() {
   ];
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-      <div className="border border-black/10 p-6">
-        <div className="font-mono text-[9px] text-black/60 tracking-widest mb-5 uppercase">
+      <div className="border border-black/15 bg-white/90 backdrop-blur-sm p-6">
+        <div className="font-mono text-[9px] text-black/75 tracking-widest mb-5 uppercase">
           Without Awarizon
         </div>
         <div className="space-y-2.5">
           {withoutItems.map((item) => (
             <div key={item} className="flex items-center gap-2.5">
-              <div className="w-3.5 h-3.5 border border-black/25 rounded-sm flex items-center justify-center shrink-0">
-                <span className="text-[8px] text-black/50">✕</span>
+              <div className="w-3.5 h-3.5 border border-black/40 rounded-sm flex items-center justify-center shrink-0">
+                <span className="text-[8px] text-black/70">✕</span>
               </div>
-              <span className="font-body text-[12px] text-black/65 line-through decoration-black/30">
+              <span className="font-body text-[12px] text-black/80 line-through decoration-black/40">
                 {item}
               </span>
             </div>
           ))}
-          <div className="pt-3 mt-3 border-t border-black/15">
-            <span className="font-mono text-[10px] text-black/55 tracking-widest">
+          <div className="pt-3 mt-3 border-t border-black/20">
+            <span className="font-mono text-[10px] text-black/70 tracking-widest">
               ~3–6 MONTHS OF SETUP
             </span>
           </div>
@@ -164,6 +164,8 @@ export default function ShiftPage() {
           {/* Edge vignette */}
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_65%_at_50%_45%,transparent_30%,black_85%)] z-[2]" />
           <div className="absolute left-0 right-0 h-px bg-accent/10 animate-scan pointer-events-none z-[3]" />
+          {/* Quiets the network lines behind the sub-copy so it stays readable */}
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_50%_34%_at_50%_52%,rgba(0,0,0,0.92)_35%,transparent)] pointer-events-none z-[3]" />
 
           <div className="relative z-[4] flex flex-col min-h-screen px-6 md:px-12 lg:px-20 pt-24 pb-16">
             {/* Hero text */}
@@ -198,7 +200,7 @@ export default function ShiftPage() {
                 ))}
               </h1>
               <motion.div
-                className="max-w-lg w-full mx-auto"
+                className="max-w-lg w-full mx-auto [text-shadow:0_1px_14px_rgba(0,0,0,0.95)]"
                 variants={{
                   hidden: { opacity: 0, y: 20 },
                   show: {
@@ -208,7 +210,7 @@ export default function ShiftPage() {
                   },
                 }}
               >
-                <p className="font-body text-xl md:text-2xl text-muted mb-5">
+                <p className="font-body text-xl md:text-2xl text-white/85 mb-5">
                   Infrastructure for{" "}
                   {["developers", "startups", "businesses"].map(
                     (word, i, arr) => (
@@ -225,7 +227,7 @@ export default function ShiftPage() {
                     ),
                   )}
                 </p>
-                <p className="font-body text-lg text-dim/90 leading-relaxed">
+                <p className="font-body text-lg text-muted leading-relaxed">
                   One SDK, ready-made APIs, wallet systems, and payment
                   infrastructure — everything needed to ship production-ready
                   Web3 with{" "}
