@@ -37,16 +37,10 @@ export default function InfrastructurePage() {
             direction="in"
             className="opacity-[0.13]"
           />
-          <div className="absolute inset-0 grid-bg-static opacity-20" />
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_-10%,rgba(200,241,63,0.07),transparent)]" />
           <div className="absolute inset-0 bg-gradient-to-r from-black via-black/40 to-transparent" />
 
           <div className="relative z-10 px-6 md:px-12 lg:px-20 pt-28 pb-16 flex flex-col min-h-screen">
-            <div className="flex items-center gap-3 mb-16">
-              <span className="w-1 h-6 bg-accent" />
-              <span className="font-mono text-[10px] tracking-[0.3em] text-accent">LAYER_02 // INFRA_NODE</span>
-            </div>
-
             <motion.div
               className="mb-12"
               initial="hidden"
@@ -194,10 +188,6 @@ export default function InfrastructurePage() {
           <div className="absolute inset-0 bg-gradient-to-b from-black via-black/60 to-black pointer-events-none" />
 
           <div className="relative max-w-6xl mx-auto">
-            <div className="mb-14 reveal">
-              <span className="sys-label opacity-65 block mb-3">SYSTEM MANIFEST // COMPONENTS</span>
-              <div className="h-px bg-gradient-to-r from-accent/30 to-transparent" />
-            </div>
             <RevealGroup className="grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-[#111]/70" stagger={0.08}>
               {INFRASTRUCTURE_NODES.map((node) => (
                 <RevealItem key={node.id}>
@@ -294,7 +284,6 @@ export default function InfrastructurePage() {
               <div className="flex items-center justify-between px-6 py-4 border-b border-[#1A1A1A]">
                 <div className="flex items-center gap-3">
                   <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
-                  <span className="sys-label">{activeNodeData.code}</span>
                 </div>
                 <button onClick={() => setModalNode(null)} className="font-mono text-xs text-dim hover:text-white transition-colors">ESC ✕</button>
               </div>

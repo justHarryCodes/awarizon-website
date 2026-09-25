@@ -20,7 +20,6 @@ export default function LearnArticlePage({ params }: Props) {
 
         {/* ── HERO ─────────────────────────────────────────── */}
         <section className="relative overflow-hidden bg-accent-wash border-b border-[#0D0D0D]">
-          <div className="absolute inset-0 grid-bg-static opacity-15" />
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_50%_at_50%_-5%,rgba(200,241,63,0.05),transparent)]" />
 
           <div className="relative z-10 px-6 md:px-12 lg:px-20 pt-28 pb-16 max-w-6xl mx-auto">

@@ -28,6 +28,8 @@ export interface DocSection {
   items: DocItem[]
 }
 
+import { SWAP_DOCS } from './docs-swap'
+
 // ─── Content ──────────────────────────────────────────────────────────────────
 
 export const DOCS: DocSection[] = [
@@ -2056,6 +2058,9 @@ const result = await verifySiweSignature({ message: text, signature: sig })`,
       },
     ],
   },
+
+  // Swap SDK, widget & token list — see lib/docs-swap.ts
+  ...SWAP_DOCS,
 
   // ── Supported Chains ────────────────────────────────────────────────────────
   {

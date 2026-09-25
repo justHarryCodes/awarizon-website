@@ -9,6 +9,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: baseUrl,                        lastModified, changeFrequency: "monthly", priority: 1    },
     // SDK — highest priority after home; this is the product
     { url: `${baseUrl}/sdk`,               lastModified, changeFrequency: "weekly",  priority: 0.97 },
+    { url: `${baseUrl}/swap`,              lastModified, changeFrequency: "weekly",  priority: 0.9 },
     { url: `${baseUrl}/docs`,              lastModified, changeFrequency: "weekly",  priority: 0.95 },
     { url: `${baseUrl}/access`,            lastModified, changeFrequency: "monthly", priority: 0.9  },
     // Company narrative

@@ -82,15 +82,9 @@ export default function LearnPage() {
 
         {/* ── HERO ─────────────────────────────────────────── */}
         <section className="relative overflow-hidden bg-accent-wash border-b border-[#0D0D0D]">
-          <div className="absolute inset-0 grid-bg-static opacity-15" />
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_50%_at_50%_-5%,rgba(200,241,63,0.06),transparent)]" />
 
           <div className="relative z-10 px-6 md:px-12 lg:px-20 pt-28 pb-16 max-w-6xl mx-auto">
-            <div className="flex items-center gap-3 mb-10">
-              <span className="w-1 h-6 bg-accent" />
-              <span className="font-mono text-[10px] tracking-[0.3em] text-accent">LAYER_08 // LEARN_LAYER</span>
-            </div>
-
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               <div className="reveal">
                 <div className="flex items-center gap-3 mb-6">
@@ -150,7 +144,6 @@ export default function LearnPage() {
         {article.keyTerms.length > 0 && (
           <section className="py-12 px-6 md:px-12 lg:px-20 border-t border-[#0D0D0D] bg-accent-wash-soft">
             <div className="max-w-3xl mx-auto">
-              <span className="sys-label opacity-65 block mb-6">KEY TERMS</span>
               <div className="grid sm:grid-cols-2 gap-3">
                 {article.keyTerms.map(({ term, def }) => (
                   <div key={term} className="p-4 border border-[#111] hover:border-[#1A1A1A] transition-colors">
@@ -167,7 +160,6 @@ export default function LearnPage() {
         <section className="py-16 px-6 md:px-12 lg:px-20 border-t border-[#0D0D0D]">
           <div className="max-w-6xl mx-auto">
             <div className="flex items-center gap-4 mb-10">
-              <span className="sys-label opacity-65">CONTINUE LEARNING</span>
               <div className="flex-1 h-px bg-gradient-to-r from-accent/20 to-transparent" />
             </div>
 
@@ -197,7 +189,6 @@ export default function LearnPage() {
         {/* ── CTA ──────────────────────────────────────────── */}
         <section className="py-16 px-6 md:px-12 lg:px-20 border-t border-[#0D0D0D]">
           <div className="max-w-2xl reveal">
-            <span className="sys-label opacity-65 block mb-4">READY TO BUILD?</span>
             <h2 className="font-display font-bold text-h2 text-white mb-4 leading-tight">
               Understanding Web3 is step one.
             </h2>

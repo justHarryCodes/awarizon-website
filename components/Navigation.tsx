@@ -18,6 +18,7 @@ const MENU_GROUPS = [
     items: [
       { href: '/infrastructure',   label: 'Infrastructure',    sub: 'Systems we build' },
       { href: '/sdk',               label: 'SDK',                 sub: 'Developer APIs & packages' },
+      { href: '/swap',              label: 'Swap',                sub: 'Live swap & bridge widget' },
       { href: '/custom-solutions', label: 'Custom Solutions',   sub: 'Bespoke infrastructure development' },
     ],
   },
@@ -205,7 +206,6 @@ export default function Navigation() {
         menuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
       }`}>
         <div className="absolute inset-0 bg-black/97 backdrop-blur-md" />
-        <div className="grid-bg-static absolute inset-0 opacity-50" />
 
         <div className="relative h-full flex items-center justify-center px-6">
           <nav className="w-full max-w-2xl">

@@ -56,7 +56,6 @@ export default function Footer() {
   return (
     <footer className="relative border-t border-[#111] bg-[#020202] overflow-hidden">
       {/* Background grid */}
-      <div className="absolute inset-0 grid-bg-static opacity-20 pointer-events-none" />
 
       {/* Top accent line */}
       <div className="h-px bg-gradient-to-r from-transparent via-accent/40 to-transparent" />

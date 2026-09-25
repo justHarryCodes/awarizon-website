@@ -166,26 +166,13 @@ export default function AccessPage() {
         <section className="relative min-h-screen flex flex-col overflow-hidden bg-accent-wash">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <div className="s-overlay bg-gradient-to-b from-black via-black/90 to-black" />
-          <div className="s-overlay grid-bg-static opacity-20" />
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,rgba(200,241,63,0.06),transparent_60%)] pointer-events-none" />
 
           <div className="relative z-10 px-6 md:px-12 lg:px-20 pt-28 pb-16 flex flex-col min-h-screen">
-            {/* Layer ID */}
-            <div className="flex items-center gap-4 mb-16">
-              <div className="flex items-center gap-2">
-                <span className="w-1 h-6 bg-accent" />
-                <span className="font-mono text-[10px] tracking-[0.3em] text-accent">LAYER_07</span>
-              </div>
-              <span className="font-mono text-[10px] text-dim">ACCESS_GATE // ENTRY POINT</span>
-            </div>
-
             {mode !== 'submitted' ? (
               <div className="flex-1 grid lg:grid-cols-2 gap-16 items-start">
                 {/* Left */}
                 <div>
-                  <div className="mb-4 reveal">
-                    <span className="sys-label opacity-65">ACCESS LAYER // NOT A CONTACT PAGE</span>
-                  </div>
                   <h1 className="font-display font-bold text-hero mb-8 reveal">
                     <span className="block text-white">Enter the</span>
                     <span className="block gradient-text">system.</span>
@@ -370,7 +357,6 @@ export default function AccessPage() {
         <section className="py-20 px-6 md:px-12 lg:px-20 border-t border-[#0D0D0D]">
           <div className="max-w-6xl mx-auto">
             <div className="mb-12 reveal">
-              <span className="sys-label opacity-65 block mb-4">CONTACT_CHANNELS // DIRECT ACCESS</span>
               <h2 className="font-display font-bold text-h2 text-white">Other ways to reach us.</h2>
             </div>
 
@@ -399,7 +385,6 @@ export default function AccessPage() {
                     </>
                   )}
                   <div className="relative p-7">
-                    <div className="sys-label opacity-65 mb-4">{ch.code}</div>
                     <div className="text-2xl mb-4 text-dim group-hover:text-accent transition-colors duration-300">{ch.icon}</div>
                     <div className="font-display font-semibold text-white text-lg mb-0.5 group-hover:text-accent transition-colors duration-300">{ch.label}</div>
                     <div className="font-mono text-[10px] text-dim mb-3 tracking-widest">{ch.sub}</div>

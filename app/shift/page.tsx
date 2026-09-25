@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
@@ -13,32 +13,31 @@ import FloatingOrbs from "@/components/ui/FloatingOrbs";
 import ScrollZoomImage from "@/components/ui/ScrollZoomImage";
 import { ALL_CHAINS } from "@/lib/chainLogos";
 import NewTabLink from "@/components/NewTabLink";
+import ChamferImage from "@/components/ui/ChamferImage";
+import Products from "@/components/shift/Products";
 
 const PROBLEM_LAYERS = [
   {
-    code: "SIGNAL_01", num: "01",
+    num: "01",
+    icon: "/elements/signal-01.png",
     title: "Web3 setup takes months.",
     sub: "It should take days.",
-    body: "Dev teams spend 3–6 months configuring RPCs, managing ABIs, setting up wallets, and handling chain differences — before writing a single line of product code. Awarizon eliminates that entirely.",
+    body: "Teams lose months to RPCs, ABIs and wallet setup. Awarizon removes that work.",
   },
   {
-    code: "SIGNAL_02", num: "02",
+    num: "02",
+    icon: "/elements/signal-02.png",
     title: "Fragmented tooling kills velocity.",
     sub: "One SDK changes everything.",
-    body: "Scattered libraries, inconsistent APIs, and no clear integration pathway force developers to reinvent the wheel on every project. A unified, production-ready SDK changes the equation.",
+    body: "Scattered libraries force every team to rebuild the basics. One unified SDK fixes that.",
   },
   {
-    code: "SIGNAL_03", num: "03",
+    num: "03",
+    icon: "/elements/signal-03.png",
     title: "Businesses need on-chain capability",
     sub: "without a dedicated blockchain team.",
-    body: "Startups and enterprises shouldn't need specialist Web3 engineers to integrate payments, identity, or wallets. Awarizon's modular infrastructure makes on-chain operations accessible to any technical team.",
+    body: "Payments, identity and wallets shouldn't need specialists. Any technical team can ship them with us.",
   },
-];
-
-const STATUS_ITEMS = [
-  { dot: "bg-accent", label: "SYS:ONLINE",            accent: true  },
-  { dot: "",          label: "LAYER_01 // INFRASTRUCTURE", accent: false },
-  { dot: "",          label: "DEV_ENV_ACTIVE",         accent: false },
 ];
 
 const ease = [0.16, 1, 0.3, 1] as const;
@@ -100,7 +99,9 @@ function ComparisonIllustration() {
           ))}
         </div>
         <div className="mt-6 pt-5 border-t border-white/10">
-          <span className="font-display font-extrabold text-accent text-2xl">90% less</span>
+          <span className="font-display font-extrabold text-accent text-2xl">
+            90% less
+          </span>
           <span className="font-mono text-[9px] text-white/55 block mt-0.5 tracking-widest">
             SETUP & CONFIGURATION TIME
           </span>
@@ -114,7 +115,6 @@ function ComparisonIllustration() {
 
 export default function ShiftPage() {
   const heroVisible = true;
-  const [tooltip, setTooltip] = useState<string | null>(null);
 
   // Vanta
   const vantaRef = useRef<HTMLDivElement>(null);
@@ -127,6 +127,8 @@ export default function ShiftPage() {
       // @ts-expect-error — no types for vanta
       const mod = await import("vanta/dist/vanta.net.min");
       const VANTA = mod.default ?? mod;
+      // Narrow screens pack the same net into fewer pixels — thin it out
+      const isMobile = window.matchMedia("(max-width: 767px)").matches;
       vantaEffect.current = VANTA({
         el: vantaRef.current,
         THREE,
@@ -137,20 +139,21 @@ export default function ShiftPage() {
         minWidth: 200,
         color: 0xc8f13f,
         backgroundColor: 0x000000,
-        points: 9.0,
-        maxDistance: 22.0,
-        spacing: 18.0,
+        points: isMobile ? 6.0 : 9.0,
+        maxDistance: isMobile ? 16.0 : 22.0,
+        spacing: isMobile ? 20.0 : 18.0,
         showDots: true,
       });
     }
     initVanta();
-    return () => { vantaEffect.current?.destroy(); };
+    return () => {
+      vantaEffect.current?.destroy();
+    };
   }, []);
 
   return (
     <ScrollProvider>
       <PageTransition>
-
         {/* ── HERO ───────────────────────────────────────────── */}
         <section className="relative min-h-screen flex flex-col overflow-hidden bg-black">
           {/* Vanta NET */}
@@ -159,40 +162,9 @@ export default function ShiftPage() {
           <div className="absolute inset-0 bg-black/52 z-[1]" />
           {/* Edge vignette */}
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_65%_at_50%_45%,transparent_30%,black_85%)] z-[2]" />
-          <div className="absolute inset-0 grid-bg-static opacity-[0.06] z-[2]" />
           <div className="absolute left-0 right-0 h-px bg-accent/10 animate-scan pointer-events-none z-[3]" />
 
           <div className="relative z-[4] flex flex-col min-h-screen px-6 md:px-12 lg:px-20 pt-24 pb-16">
-
-            {/* Status bar */}
-            <motion.div
-              className="flex items-center justify-center gap-4 mb-12 flex-wrap"
-              initial="hidden"
-              animate="show"
-              variants={{ show: { transition: { staggerChildren: 0.1, delayChildren: 0.3 } } }}
-            >
-              {STATUS_ITEMS.map((item, i) => (
-                <motion.div
-                  key={item.label}
-                  className="flex items-center gap-2"
-                  variants={{
-                    hidden: { opacity: 0, x: -12 },
-                    show: { opacity: 1, x: 0, transition: { duration: 0.5, ease } },
-                  }}
-                >
-                  {item.dot && (
-                    <span className={`w-1.5 h-1.5 rounded-full ${item.dot} animate-pulse`} />
-                  )}
-                  <span className={`font-mono text-[10px] tracking-widest ${item.accent ? "text-accent" : "text-dim"}`}>
-                    {item.label}
-                  </span>
-                  {i < STATUS_ITEMS.length - 1 && (
-                    <span className="font-mono text-[10px] text-dim/40 ml-2">|</span>
-                  )}
-                </motion.div>
-              ))}
-            </motion.div>
-
             {/* Hero text */}
             <motion.div
               className="text-center mx-auto flex flex-col items-center"
@@ -200,20 +172,10 @@ export default function ShiftPage() {
               animate={heroVisible ? "show" : "hidden"}
               variants={{ show: { transition: { staggerChildren: 0.13 } } }}
             >
-              <motion.span
-                className="sys-label opacity-65 tracking-[0.4em] block mb-6"
-                variants={{
-                  hidden: { opacity: 0, y: 12 },
-                  show: { opacity: 0.35, y: 0, transition: { duration: 0.5, ease } },
-                }}
-              >
-                AWARIZON // INFRASTRUCTURE PLATFORM
-              </motion.span>
-
-              <h1 className="font-display font-extrabold text-hero mb-10 overflow-hidden">
+              <h1 className="font-display font-extrabold text-hero overflow-hidden">
                 {[
-                  { text: "Build",      cls: "block text-white"    },
-                  { text: "on-chain.",  cls: "block text-white"    },
+                  { text: "Build", cls: "block text-white" },
+                  { text: "on-chain Products.", cls: "block text-white" },
                   { text: "5× faster.", cls: "block gradient-text" },
                 ].map(({ text, cls }) => (
                   <div key={text} className="overflow-hidden">
@@ -223,7 +185,8 @@ export default function ShiftPage() {
                       variants={{
                         hidden: { y: "110%", opacity: 0 },
                         show: {
-                          y: "0%", opacity: 1,
+                          y: "0%",
+                          opacity: 1,
                           transition: { duration: 0.85, ease },
                         },
                       }}
@@ -233,53 +196,15 @@ export default function ShiftPage() {
                   </div>
                 ))}
               </h1>
-
-              <motion.div
-                className="max-w-lg w-full mx-auto"
+              <motion.p
+                className="font-body text-lg md:text-xl text-muted mt-8 max-w-md"
                 variants={{
-                  hidden: { opacity: 0, y: 20 },
+                  hidden: { opacity: 0, y: 16 },
                   show: { opacity: 1, y: 0, transition: { duration: 0.7, ease } },
                 }}
               >
-                <p className="font-body text-xl md:text-2xl text-muted mb-5">
-                  Infrastructure for{" "}
-                  {["developers", "startups", "businesses"].map((word, i, arr) => (
-                    <span key={word}>
-                      <button
-                        className="text-white/80 border-b border-dashed border-accent/30 hover:border-accent hover:text-accent transition-colors duration-200"
-                        onMouseEnter={() => setTooltip(word)}
-                        onMouseLeave={() => setTooltip(null)}
-                      >
-                        {word}
-                      </button>
-                      {i < arr.length - 1 ? ", " : "."}
-                    </span>
-                  ))}
-                </p>
-                <div className="h-px bg-gradient-to-r from-accent/40 via-transparent to-transparent mb-6" />
-                <p className="font-body text-lg text-dim/90 leading-relaxed">
-                  One SDK, ready-made APIs, wallet systems, and payment infrastructure — everything needed to ship production-ready Web3 with{" "}
-                  <span className="text-white">90% less setup time.</span>
-                </p>
-
-                {tooltip && (
-                  <motion.div
-                    className="mt-4 px-4 py-3 border border-accent/20 bg-accent/5"
-                    initial={{ opacity: 0, y: 6 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.25 }}
-                  >
-                    <p className="font-mono text-sm text-accent/90">
-                      {tooltip === "developers" &&
-                        "Ship EVM integrations in hours. The @awarizon/web3 SDK handles RPC, ABIs, wallets, and codegen — no boilerplate."}
-                      {tooltip === "startups" &&
-                        "Go from idea to on-chain product without hiring a blockchain team. Wallets, payments, identity, and more."}
-                      {tooltip === "businesses" &&
-                        "Integrate stablecoin payments, smart contracts, and digital identity into existing products — no Web3 team required."}
-                    </p>
-                  </motion.div>
-                )}
-              </motion.div>
+                SDK, wallets and payments for teams shipping Web3. Go from idea to mainnet in days, not months.
+              </motion.p>
             </motion.div>
 
             {/* Scroll indicator */}
@@ -290,9 +215,6 @@ export default function ShiftPage() {
               transition={{ duration: 0.8, delay: 0.5 }}
             >
               <div className="w-px h-12 bg-gradient-to-b from-accent to-transparent" />
-              <span className="font-mono text-[10px] text-dim tracking-widest mt-2 block">
-                SCROLL TO EXPLORE
-              </span>
             </motion.div>
           </div>
         </section>
@@ -306,33 +228,47 @@ export default function ShiftPage() {
             spinDuration={50}
             className="opacity-[0.35]"
           />
-          <FloatingOrbs color="0,0,0" orbs={[
-            { w: 600, h: 400, left: '-5%',  top: '10%', delay: '0s',  duration: '12s', opacity: 0.018 },
-            { w: 400, h: 350, left: '65%',  top: '40%', delay: '3s',  duration: '14s', opacity: 0.012 },
-          ]} />
+          <FloatingOrbs
+            color="0,0,0"
+            orbs={[
+              {
+                w: 600,
+                h: 400,
+                left: "-5%",
+                top: "10%",
+                delay: "0s",
+                duration: "12s",
+                opacity: 0.018,
+              },
+              {
+                w: 400,
+                h: 350,
+                left: "65%",
+                top: "40%",
+                delay: "3s",
+                duration: "14s",
+                opacity: 0.012,
+              },
+            ]}
+          />
           <div className="relative max-w-6xl mx-auto">
             <div className="grid lg:grid-cols-2 gap-16 items-start">
               <div>
                 <Reveal>
-                  <span className="font-mono text-[10px] tracking-[0.3em] text-black/60 block mb-5 uppercase">
-                    The Platform // Built for Builders
-                  </span>
-                  <h2
-                    className="font-display font-extrabold text-black text-statement mb-6"
-                  >
-                    Everything your team needs to build on-chain — without starting from zero.
+                  <h2 className="font-display font-extrabold text-black text-statement mb-4">
+                    Everything to build on-chain.
                   </h2>
-                  <p className="font-body text-lg text-black/85 leading-relaxed mb-10 max-w-md">
-                    Awarizon provides the SDK, APIs, wallet systems, payment infrastructure, and developer tools that eliminate months of blockchain setup. Ship what matters — not infrastructure.
+                  <p className="font-body text-lg text-black/70 mb-10">
+                    Skip months of RPCs, ABIs and wallet plumbing. Our SDK, APIs and payment rails are ready from day one.
                   </p>
                 </Reveal>
 
                 <Reveal delay={0.15}>
-                  <div className="grid grid-cols-3 gap-px bg-black/10 mb-8">
+                  <div className="grid grid-cols-3 gap-px bg-black/10">
                     {[
-                      { to: 5,  suffix: "×", label: "Faster development" },
-                      { to: 90, suffix: "%", label: "Less setup time"    },
-                      { to: 15, suffix: "+", label: "EVM chains"         },
+                      { to: 5, suffix: "×", label: "Faster development" },
+                      { to: 90, suffix: "%", label: "Less setup time" },
+                      { to: 15, suffix: "+", label: "EVM chains" },
                     ].map((s) => (
                       <div key={s.suffix} className="bg-white px-4 py-5">
                         <div className="font-display font-extrabold text-3xl md:text-4xl text-black mb-1">
@@ -342,13 +278,6 @@ export default function ShiftPage() {
                           {s.label}
                         </div>
                       </div>
-                    ))}
-                  </div>
-                  <div className="flex flex-wrap gap-2">
-                    {["SDK", "REST APIs", "Wallet Infrastructure", "Payments", "Identity", "Smart Contracts"].map((p) => (
-                      <span key={p} className="font-mono text-[9px] px-3 py-1.5 border border-black/20 text-black/65 tracking-widest">
-                        {p}
-                      </span>
                     ))}
                   </div>
                 </Reveal>
@@ -361,6 +290,9 @@ export default function ShiftPage() {
           </div>
         </section>
 
+        {/* ── PRODUCTS ────────────────────────────────────────── */}
+        <Products />
+
         {/* ── PROBLEM CARDS ─────────────────────────────────────── */}
         <section className="relative overflow-hidden py-32 px-6 md:px-12 lg:px-20">
           <ScrollZoomImage
@@ -372,22 +304,31 @@ export default function ShiftPage() {
 
           <div className="relative max-w-6xl mx-auto">
             <Reveal className="mb-20">
-              <span className="sys-label opacity-65 block mb-4">SIGNAL_ANALYSIS // THE PROBLEM</span>
-              <div className="h-px bg-gradient-to-r from-accent/40 to-transparent mb-8" />
               <h2 className="font-display font-bold text-h2 text-white">
                 Why teams need us.
               </h2>
             </Reveal>
 
-            <RevealGroup className="grid md:grid-cols-3 gap-px bg-[#111]/80" stagger={0.12}>
+            <RevealGroup
+              className="grid md:grid-cols-3 gap-px bg-[#111]/80"
+              stagger={0.12}
+            >
               {PROBLEM_LAYERS.map((layer) => (
-                <RevealItem key={layer.code} className="bg-black/90 backdrop-blur-sm p-10">
-                  <div className="flex items-center gap-2 mb-8">
-                    <span className="w-1 h-1 bg-accent rounded-full" />
-                    <span className="sys-label opacity-60">{layer.code}</span>
-                  </div>
-                  <div className="font-display text-7xl font-extrabold text-[#0F0F0F] mb-6 select-none leading-none">
-                    {layer.num}
+                <RevealItem
+                  key={layer.num}
+                  className="group bg-black/90 backdrop-blur-sm p-10"
+                >
+                  <div className="flex items-end justify-between mb-6">
+                    <div className="font-display text-7xl font-extrabold text-[#1A1A1A] select-none leading-none">
+                      {layer.num}
+                    </div>
+                    <Image
+                      src={layer.icon}
+                      alt=""
+                      width={120}
+                      height={120}
+                      className="w-20 h-20 object-contain select-none pointer-events-none drop-shadow-[0_10px_24px_rgba(200,241,63,0.18)] transition-transform duration-500 group-hover:-translate-y-1 group-hover:rotate-6"
+                    />
                   </div>
                   <h3 className="font-display font-bold text-h3 text-white mb-1 leading-tight">
                     {layer.title}
@@ -395,7 +336,9 @@ export default function ShiftPage() {
                   <h3 className="font-display font-bold text-h3 text-accent mb-6 leading-tight">
                     {layer.sub}
                   </h3>
-                  <p className="font-body text-base text-muted leading-relaxed">{layer.body}</p>
+                  <p className="font-body text-base text-muted leading-relaxed">
+                    {layer.body}
+                  </p>
                 </RevealItem>
               ))}
             </RevealGroup>
@@ -412,65 +355,45 @@ export default function ShiftPage() {
           <div className="absolute inset-0 bg-gradient-to-r from-black via-black/70 to-black pointer-events-none" />
           <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[50vw] h-[50vw] rounded-full bg-accent/[0.03] blur-3xl pointer-events-none" />
           <Reveal className="relative max-w-4xl">
-            <span className="sys-label opacity-65 block mb-6">OPERATIONAL CONTEXT</span>
-            <blockquote className="font-display font-bold leading-tight text-3xl md:text-5xl text-white mb-10">
-              "We build the infrastructure that moves{" "}
-              <span className="text-accent">developers and businesses</span>{" "}
-              from months of setup to shipping on-chain in days."
+            <blockquote className="font-display font-bold leading-tight text-3xl md:text-5xl text-white">
+              From months of setup to{" "}
+              <span className="text-accent">shipping in days.</span>
             </blockquote>
-            <div className="flex items-center gap-8 flex-wrap">
-              <div className="flex items-center gap-4">
-                <div className="w-px h-10 bg-accent/40" />
-                <div>
-                  <p className="font-mono text-xs text-accent">POSITIONING</p>
-                  <p className="font-body text-base text-muted">Blockchain Infrastructure & Developer Platform</p>
-                </div>
-              </div>
-              <div className="flex items-center gap-4">
-                <div className="w-px h-10 bg-[#333]" />
-                <div>
-                  <p className="font-mono text-xs text-dim">SDK</p>
-                  <p className="font-body text-base text-muted">
-                    @awarizon/web3 · @awarizon/react · @awarizon/cli
-                  </p>
-                </div>
-              </div>
-            </div>
           </Reveal>
         </section>
 
         {/* ── SDK TEASER ─────────────────────────────────────────── */}
         <section className="relative py-28 px-6 md:px-12 lg:px-20 bg-[#020202] border-t border-[#0E0E0E] overflow-hidden">
-          <div className="absolute inset-0 grid-bg-static opacity-10 pointer-events-none" />
           <div className="absolute left-0 top-0 w-[40vw] h-[40vw] bg-accent/[0.03] blur-3xl pointer-events-none" />
 
-          <div className="relative max-w-4xl mx-auto text-center">
-            <Reveal>
-              <span className="font-mono text-[10px] tracking-[0.3em] text-accent/70 block mb-5">
-                THE PRODUCT // AWARIZON SDK
-              </span>
-              <h2 className="font-display font-extrabold text-white text-statement mb-6 text-balance">
-                One SDK. Any chain. <span className="gradient-text">Ship faster.</span>
+          <div className="relative max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+            <Reveal x={-24} y={0}>
+              <h2 className="font-display font-extrabold text-white text-statement mb-4">
+                One SDK. Any chain.{" "}
+                <span className="gradient-text">Ship faster.</span>
               </h2>
-              <p className="font-body text-lg text-muted leading-relaxed mb-10 max-w-lg mx-auto">
-                <code className="font-mono text-accent text-sm">@awarizon/web3</code> gives developers typed reads, writes, events, and codegen across 15+ EVM chains — without configuring RPC providers, managing ABIs, or writing boilerplate.
+              <p className="font-body text-lg text-muted mb-10">
+                Typed reads, writes and events across 15+ EVM chains. No RPC setup, no ABI juggling, no boilerplate.
               </p>
-              <div className="flex flex-wrap justify-center gap-x-8 gap-y-3 mb-10">
-                {["15+ EVM chains", "Full TypeScript", "Zero config reads"].map((f) => (
-                  <div key={f} className="flex items-center gap-2">
-                    <span className="w-1 h-1 bg-accent flex-shrink-0" />
-                    <span className="font-mono text-[11px] text-muted tracking-wide">{f}</span>
-                  </div>
-                ))}
-              </div>
-              <div className="flex flex-wrap justify-center gap-3">
-                <Link href="/sdk" className="font-mono text-[10px] tracking-widest px-5 py-3 bg-accent text-black font-semibold hover:bg-white transition-colors">
+              <div className="flex flex-wrap gap-3">
+                <Link
+                  href="/sdk"
+                  className="font-mono text-[10px] tracking-widest px-5 py-3 bg-accent text-black font-semibold hover:bg-white transition-colors"
+                >
                   EXPLORE THE SDK →
                 </Link>
-                <NewTabLink to="dashboard" path="/docs" className="font-mono text-[10px] tracking-widest px-5 py-3 border border-[#252525] text-muted hover:text-white hover:border-white/20 transition-colors">
+                <NewTabLink
+                  to="dashboard"
+                  path="/docs"
+                  className="font-mono text-[10px] tracking-widest px-5 py-3 border border-[#252525] text-muted hover:text-white hover:border-white/20 transition-colors"
+                >
                   DOCUMENTATION
                 </NewTabLink>
               </div>
+            </Reveal>
+
+            <Reveal delay={0.15} scale={0.96}>
+              <ChamferImage src="/sdk-theme.png" alt="Awarizon SDK" side="right" scale={0.95} blend />
             </Reveal>
           </div>
         </section>
@@ -479,13 +402,18 @@ export default function ShiftPage() {
         <section className="py-20 px-6 md:px-12 lg:px-20 border-t border-[#0E0E0E] bg-[#020202]">
           <div className="max-w-6xl mx-auto">
             <Reveal className="mb-10">
-              <span className="sys-label opacity-65 block mb-3">CHAIN_SUPPORT // EVM_NATIVE</span>
               <h2 className="font-display font-bold text-h2 text-white">
-                Supported across every major chain.
+                Every major chain.
               </h2>
+              <p className="font-body text-lg text-muted mt-4">
+                EVM-native and chain-agnostic. Deploy once, run on any supported network.
+              </p>
             </Reveal>
 
-            <RevealGroup className="flex items-end gap-4 flex-wrap" stagger={0.04}>
+            <RevealGroup
+              className="flex items-end gap-4 flex-wrap"
+              stagger={0.04}
+            >
               {ALL_CHAINS.map(({ name, logo }) => (
                 <RevealItem key={name} y={16}>
                   <motion.div
@@ -493,7 +421,13 @@ export default function ShiftPage() {
                     whileHover={{ y: -4, transition: { duration: 0.25 } }}
                   >
                     <div className="w-12 h-12 rounded-full bg-[#111] border border-[#1E1E1E] flex items-center justify-center overflow-hidden group-hover:border-accent/40 transition-colors duration-300">
-                      <Image src={logo} alt={name} width={32} height={32} className="w-8 h-8 object-contain" />
+                      <Image
+                        src={logo}
+                        alt={name}
+                        width={32}
+                        height={32}
+                        className="w-8 h-8 object-contain"
+                      />
                     </div>
                     <span className="font-mono text-[9px] text-dim group-hover:text-accent/70 transition-colors">
                       {name}
@@ -507,9 +441,13 @@ export default function ShiftPage() {
                   whileHover={{ y: -4, transition: { duration: 0.25 } }}
                 >
                   <div className="w-12 h-12 rounded-full bg-accent/10 border border-accent/30 flex items-center justify-center">
-                    <span className="font-mono text-accent text-xl font-bold leading-none">+</span>
+                    <span className="font-mono text-accent text-xl font-bold leading-none">
+                      +
+                    </span>
                   </div>
-                  <span className="font-mono text-[9px] text-accent tracking-widest">more</span>
+                  <span className="font-mono text-[9px] text-accent tracking-widest">
+                    more
+                  </span>
                 </motion.div>
               </RevealItem>
             </RevealGroup>
@@ -520,22 +458,26 @@ export default function ShiftPage() {
         <section className="py-20 px-6 md:px-12 lg:px-20 border-t border-[#111]">
           <div className="max-w-6xl mx-auto flex items-start justify-between flex-wrap gap-8">
             <Reveal>
-              <span className="sys-label opacity-65 block mb-2">DISTRIBUTION_LAYER // NEXT</span>
               <p className="font-display font-semibold text-3xl text-white">
                 Build on the infrastructure.
               </p>
-              <p className="font-body text-base text-dim mt-2 max-w-sm">
-                From developer SDK to full business adoption — distribution is part of the product.
+              <p className="font-body text-base text-dim mt-2">
+                Start with the SDK and scale on our rails. Distribution is part of the product.
               </p>
             </Reveal>
             <Reveal delay={0.15} className="flex flex-wrap gap-3">
-              <Button href="/sdk" variant="primary" size="lg">SDK →</Button>
-              <Button href="/adoption" variant="ghost" size="lg">Adoption Layer</Button>
-              <Button href="/infrastructure" variant="ghost" size="lg">Infrastructure</Button>
+              <Button href="/sdk" variant="primary" size="lg">
+                SDK →
+              </Button>
+              <Button href="/adoption" variant="ghost" size="lg">
+                Adoption Layer
+              </Button>
+              <Button href="/infrastructure" variant="ghost" size="lg">
+                Infrastructure
+              </Button>
             </Reveal>
           </div>
         </section>
-
       </PageTransition>
     </ScrollProvider>
   );

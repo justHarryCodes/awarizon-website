@@ -20,7 +20,6 @@
   --text: #FFFFFF;
   --muted: #D4D4D4;
   --dim: #A0A0A0;
-  --grid-size: 60px;
   --transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   --transition-fast: 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -47,20 +46,6 @@ html, body {
 :focus-visible { outline: 1px solid var(--accent); outline-offset: 4px; }
 
 /* ── Backgrounds ── */
-.grid-bg {
-  background-image:
-    linear-gradient(rgba(200,241,63,0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(200,241,63,0.04) 1px, transparent 1px);
-  background-size: var(--grid-size) var(--grid-size);
-  animation: gridShift 25s linear infinite;
-}
-.grid-bg-static {
-  background-image:
-    linear-gradient(rgba(200,241,63,0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(200,241,63,0.03) 1px, transparent 1px);
-  background-size: 40px 40px;
-}
-
 /* Black-to-accent wash — a touch of accent bleeding through black, for
    section backgrounds that want depth without going fully flat black. */
 .bg-accent-wash {
@@ -197,7 +182,6 @@ html, body {
 @keyframes blink { 0%,100% { opacity:1 } 50% { opacity:0 } }
 
 /* ── Misc keyframes ── */
-@keyframes gridShift { 0% { background-position:0 0 } 100% { background-position:60px 60px } }
 @keyframes nodePulse { 0%,100% { opacity:0.6; transform:scale(1) } 50% { opacity:1; transform:scale(1.05) } }
 @keyframes dashFlow  { to { stroke-dashoffset: -36 } }
 @keyframes slideUp   { from { opacity:0; transform:translateY(36px) } to { opacity:1; transform:translateY(0) } }

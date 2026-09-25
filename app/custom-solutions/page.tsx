@@ -41,14 +41,8 @@ export default function CustomSolutionsPage() {
             { w: 620, h: 460, left: '-10%', top: '5%',  delay: '0s',  duration: '12s', opacity: 0.05  },
             { w: 380, h: 320, left: '68%',  top: '45%', delay: '2s',  duration: '14s', opacity: 0.04  },
           ]} />
-          <div className="absolute inset-0 grid-bg-static opacity-20" />
 
           <div className="relative z-10 px-6 md:px-12 lg:px-20 pt-28 pb-16 flex flex-col min-h-screen">
-            <div className="flex items-center gap-3 mb-14">
-              <span className="w-1 h-6 bg-accent" />
-              <span className="font-mono text-[10px] tracking-[0.3em] text-accent">CUSTOM_BUILD // BESPOKE INFRASTRUCTURE</span>
-            </div>
-
             <div className="flex-1 flex flex-col justify-center max-w-4xl">
               <Reveal>
                 <h1 className="font-display font-extrabold text-hero text-white mb-8">
@@ -81,8 +75,6 @@ export default function CustomSolutionsPage() {
         <section className="py-24 px-6 md:px-12 lg:px-20 border-t border-[#0D0D0D] bg-accent-wash-soft">
           <div className="max-w-6xl mx-auto">
             <div className="mb-12 reveal">
-              <span className="sys-label opacity-65 block mb-3">WHAT WE BUILD // CAPABILITIES</span>
-              <div className="h-px bg-gradient-to-r from-accent/30 to-transparent mb-6" />
               <h2 className="font-display font-bold text-h2 text-white">
                 Infrastructure a template can't cover.
               </h2>
@@ -105,11 +97,6 @@ export default function CustomSolutionsPage() {
         {/* ── PROCESS ──────────────────────────────────────── */}
         <section className="py-28 px-6 md:px-12 lg:px-20 border-t border-[#0D0D0D]">
           <div className="max-w-5xl mx-auto">
-            <div className="mb-14 reveal">
-              <span className="sys-label opacity-65 block mb-3">HOW IT WORKS // THE PROCESS</span>
-              <div className="h-px bg-gradient-to-r from-accent/30 to-transparent" />
-            </div>
-
             <RevealGroup className="space-y-0" stagger={0.1}>
               {PROCESS.map((p, i) => (
                 <RevealItem key={p.n}>
@@ -129,11 +116,6 @@ export default function CustomSolutionsPage() {
         {/* ── WHO THIS IS FOR ──────────────────────────────── */}
         <section className="py-24 px-6 md:px-12 lg:px-20 border-t border-[#0D0D0D] bg-[#030303]">
           <div className="max-w-6xl mx-auto">
-            <div className="mb-12 reveal">
-              <span className="sys-label opacity-65 block mb-3">WHO THIS IS FOR</span>
-              <div className="h-px bg-gradient-to-r from-accent/30 to-transparent" />
-            </div>
-
             <RevealGroup className="grid sm:grid-cols-3 gap-px bg-[#111]" stagger={0.08}>
               {FOR_WHO.map((f) => (
                 <RevealItem key={f.code} y={20}>
@@ -150,11 +132,9 @@ export default function CustomSolutionsPage() {
 
         {/* ── CTA ──────────────────────────────────────────── */}
         <section className="relative py-32 px-6 md:px-12 lg:px-20 overflow-hidden border-t border-[#0D0D0D]">
-          <div className="absolute inset-0 grid-bg-static opacity-10" />
           <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[60vw] h-[30vw] bg-accent/[0.04] blur-3xl pointer-events-none" />
 
           <div className="relative max-w-4xl mx-auto text-center reveal">
-            <span className="sys-label opacity-65 block mb-6">START A PROJECT // TELL US MORE</span>
             <h2 className="font-display font-extrabold text-white text-statement mb-6">
               Tell us what <span className="gradient-text">you're building.</span>
             </h2>

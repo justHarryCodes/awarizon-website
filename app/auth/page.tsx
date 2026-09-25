@@ -94,7 +94,6 @@ export default function AuthPage() {
   return (
     <div className="min-h-screen bg-black flex flex-col items-center justify-center px-4 relative overflow-hidden">
       {/* Grid background */}
-      <div className="absolute inset-0 grid-bg-static opacity-20" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_50%_at_50%_0%,rgba(200,241,63,0.05),transparent)]" />
 
       {/* Logo / back to site */}

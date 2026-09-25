@@ -35,7 +35,6 @@ export default function AdoptionPage() {
 
         {/* ── HERO ──────────────────────────────────────────── */}
         <section className="relative min-h-screen flex flex-col overflow-hidden bg-accent-wash">
-          <div className="absolute inset-0 grid-bg-static opacity-20 z-0" />
           <FloatingOrbs />
           {/* Signal waves SVG — subtle expanding rings */}
           <div className="absolute right-[10%] top-[20%] w-[380px] h-[380px] pointer-events-none z-0 opacity-30">
@@ -57,29 +56,9 @@ export default function AdoptionPage() {
           <div className="absolute left-0 inset-y-0 w-[40vw] bg-gradient-to-r from-accent/[0.04] to-transparent pointer-events-none z-0" />
 
           <div className="relative z-10 px-6 md:px-12 lg:px-20 pt-28 pb-16 flex flex-col min-h-screen">
-            {/* Layer tag */}
-            <motion.div
-              className="flex items-center gap-3 mb-16"
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, ease }}
-            >
-              <span className="w-1 h-6 bg-accent" />
-              <span className="font-mono text-[10px] tracking-[0.3em] text-accent">LAYER_03 // ADOPT_SYS</span>
-            </motion.div>
-
             <div className="flex-1 grid lg:grid-cols-2 gap-16 items-start">
               {/* Left — staggered hero text */}
               <div>
-                <motion.span
-                  className="sys-label block mb-5"
-                  style={{ opacity: 0.4 }}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 0.4, y: 0 }}
-                  transition={{ duration: 0.5, ease, delay: 0.3 }}
-                >
-                  DISTRIBUTION AS INFRASTRUCTURE
-                </motion.span>
 
                 <motion.h1
                   className="font-display font-extrabold text-hero mb-8"
@@ -117,8 +96,7 @@ export default function AdoptionPage() {
                     Distribution completes the protocol.
                   </p>
                   <p className="font-body text-base text-dim/90 leading-relaxed max-w-md">
-                    Many teams can ship a smart contract. Fewer can drive real-world Web3 adoption.
-                    Awarizon is built around both.
+                    Many teams can ship a smart contract. Few can drive real-world adoption — Awarizon does both.
                   </p>
                 </motion.div>
 
@@ -141,7 +119,6 @@ export default function AdoptionPage() {
               <Reveal delay={0.3}>
                 <div className="border border-[#1A1A1A] bg-[#030303]">
                   <div className="flex items-center justify-between px-5 py-4 border-b border-[#141414]">
-                    <span className="sys-label opacity-60">ADOPTION_FLOW_SIM</span>
                     <div className="flex items-center gap-2">
                       <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
                       <span className="font-mono text-[9px] text-green-400">LIVE</span>
@@ -219,7 +196,6 @@ export default function AdoptionPage() {
 
           <div className="relative max-w-6xl mx-auto">
             <Reveal className="mb-14">
-              <span className="sys-label opacity-65 block mb-4">DISTRIBUTION_ARCHITECTURE // CORE PRINCIPLES</span>
               <h2 className="font-display font-bold text-h2 text-white">
                 Distribution is part of the product.
               </h2>
@@ -229,7 +205,6 @@ export default function AdoptionPage() {
               {PRINCIPLES.map((p) => (
                 <RevealItem key={p.code}>
                   <div className="bg-black/88 backdrop-blur-sm p-8 group hover:bg-black/95 transition-all duration-300 h-full">
-                    <div className="sys-label opacity-65 mb-5">{p.code}</div>
                     <div className="flex items-start gap-4 mb-4">
                       <div className="w-px h-12 bg-gradient-to-b from-accent to-transparent mt-1 shrink-0" />
                       <h3 className="font-display font-bold text-white text-h3 leading-snug group-hover:text-accent/90 transition-colors duration-300">
@@ -277,7 +252,6 @@ export default function AdoptionPage() {
         <section className="py-20 px-6 md:px-12 lg:px-20">
           <div className="max-w-6xl mx-auto flex items-center justify-between flex-wrap gap-8">
             <Reveal>
-              <span className="sys-label opacity-65 block mb-2">NEXT_LAYER</span>
               <p className="font-display font-semibold text-3xl text-white">Explore the ecosystem.</p>
             </Reveal>
             <Reveal delay={0.15} className="flex flex-wrap gap-3">

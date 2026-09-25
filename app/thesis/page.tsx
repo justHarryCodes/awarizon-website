@@ -58,23 +58,12 @@ export default function ThesisPage() {
       <PageTransition>
         {/* ── HERO ──────────────────────────────────────────── */}
         <section className="relative min-h-screen flex flex-col overflow-hidden bg-accent-wash">
-          <div className="absolute inset-0 grid-bg-static opacity-20" />
           <div className="absolute bottom-0 left-1/3 w-96 h-96 rounded-full bg-accent/[0.05] blur-3xl pointer-events-none" />
 
           <div className="relative z-10 px-6 md:px-12 lg:px-20 pt-28 pb-16 flex flex-col min-h-screen">
-            <div className="flex items-center gap-3 mb-16">
-              <span className="w-1 h-6 bg-accent" />
-              <span className="font-mono text-[10px] tracking-[0.3em] text-accent">
-                LAYER_06 // MARKET_THESIS
-              </span>
-            </div>
-
             <div className="flex-1 grid lg:grid-cols-2 gap-16 items-start">
               {/* Left: thesis */}
               <div>
-                <span className="sys-label opacity-65 block mb-5 reveal">
-                  GLOBAL ADOPTION THESIS
-                </span>
                 <h1
                   className="font-display font-extrabold text-hero reveal"
                 >
@@ -108,7 +97,6 @@ export default function ThesisPage() {
                   key={active.code}
                   className="min-h-[190px] animate-slide-up reveal reveal-delay-3"
                 >
-                  <div className="sys-label opacity-65 mb-3">{active.code}</div>
                   <h2 className="font-display font-bold text-h3 text-white mb-2 leading-snug">
                     {active.headline}
                   </h2>
@@ -162,9 +150,6 @@ export default function ThesisPage() {
         <section className="py-24 px-6 md:px-12 lg:px-20 border-t border-[#0D0D0D] bg-accent-wash-soft">
           <div className="max-w-4xl mx-auto space-y-10">
             <div className="reveal">
-              <span className="sys-label opacity-65 block mb-8">
-                STRATEGIC_THESIS // FULL STATEMENT
-              </span>
               <div className="h-rule mb-8" />
               <p className="font-display font-bold text-2xl md:text-4xl text-white leading-snug">
                 Global markets will not be transformed by repackaging existing
@@ -226,7 +211,6 @@ export default function ThesisPage() {
                   className="bg-black/88 backdrop-blur-sm p-10 reveal"
                   style={{ transitionDelay: `${i * 100}ms` }}
                 >
-                  <div className="sys-label opacity-65 mb-4">{geo.code}</div>
                   <h3 className="font-display font-bold text-h2 text-white mb-4">
                     {geo.title}
                   </h3>
@@ -243,9 +227,6 @@ export default function ThesisPage() {
         <section className="py-20 px-6 md:px-12 lg:px-20">
           <div className="max-w-6xl mx-auto flex items-center justify-between flex-wrap gap-8">
             <div className="reveal">
-              <span className="sys-label opacity-65 block mb-2">
-                FINAL_LAYER
-              </span>
               <p className="font-display font-semibold text-3xl text-white">
                 Enter the system.
               </p>

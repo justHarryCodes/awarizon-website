@@ -269,7 +269,6 @@ export default function ChainsMarquee() {
 
   return (
     <section className="relative py-24 border-t border-[#0D0D0D] overflow-hidden">
-      <div className="absolute inset-0 grid-bg-static opacity-10 pointer-events-none" />
 
       {/* ── Left illustration ── */}
       <div className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 pointer-events-none z-10 hidden xl:block">
@@ -284,7 +283,6 @@ export default function ChainsMarquee() {
       <div className="relative max-w-6xl mx-auto px-6 md:px-12 lg:px-20">
         {/* Header */}
         <div className="mb-14 text-center reveal">
-          <span className="sys-label opacity-40 block mb-4">CHAIN_SUPPORT // EVM_NATIVE</span>
           <h2 className="font-display font-bold text-2xl md:text-4xl text-white mb-4">
             Deployed across every major EVM chain.
           </h2>

@@ -46,21 +46,10 @@ export default function EcosystemPage() {
 
         {/* ── HERO ──────────────────────────────────────────── */}
         <section className="relative min-h-screen flex flex-col overflow-hidden bg-accent-wash">
-          <div className="absolute inset-0 grid-bg-static opacity-20 z-0" />
           <FloatingOrbs />
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_60%_at_50%_50%,rgba(200,241,63,0.04),transparent)] z-0" />
 
           <div className="relative z-10 px-6 md:px-12 lg:px-20 pt-28 pb-16 flex flex-col min-h-screen">
-            <motion.div
-              className="flex items-center gap-3 mb-10"
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, ease }}
-            >
-              <span className="w-1 h-6 bg-accent" />
-              <span className="font-mono text-[10px] tracking-[0.3em] text-accent">LAYER_05 // ECO_GRAPH</span>
-            </motion.div>
-
             {/* Hero heading stagger */}
             <motion.div
               className="mb-8"
@@ -68,16 +57,6 @@ export default function EcosystemPage() {
               animate="show"
               variants={{ show: { transition: { staggerChildren: 0.09, delayChildren: 0.3 } } }}
             >
-              <motion.span
-                className="sys-label block mb-4"
-                style={{ opacity: 0.4 }}
-                variants={{
-                  hidden: { opacity: 0, y: 10 },
-                  show:   { opacity: 0.4, y: 0, transition: { duration: 0.5, ease } },
-                }}
-              >
-                ECOSYSTEM LOGIC // SYSTEM ARCHITECTURE
-              </motion.span>
 
               <h1 className="font-display font-extrabold text-hero">
                 {[
@@ -209,7 +188,6 @@ export default function EcosystemPage() {
               <div className="lg:w-80 shrink-0">
                 {activeNodeData ? (
                   <div className="border border-accent/30 bg-black p-6 animate-slide-up relative">
-                    <div className="sys-label mb-3">{activeNodeData.code}</div>
                     <h2 className="font-display font-bold text-h3 text-white mb-4">{activeNodeData.label}</h2>
                     <p className="font-body text-base text-muted leading-relaxed mb-5">{activeNodeData.desc}</p>
                     {activeNodeData.connections.length > 0 && (
@@ -231,12 +209,9 @@ export default function EcosystemPage() {
                   </div>
                 ) : (
                   <div className="border border-[#1A1A1A] bg-[#040404] p-6">
-                    <div className="sys-label opacity-65 mb-4">SYSTEM_MANIFEST</div>
                     <p className="font-body text-base text-muted leading-relaxed mb-5">
-                      Each layer strengthens the next. Blockchain infrastructure creates capability.
-                      Distribution creates global reach. Market feedback closes the loop.
+                      Infrastructure creates capability and distribution creates reach. Market feedback closes the loop.
                     </p>
-                    <div className="h-px bg-gradient-to-r from-accent/20 to-transparent mb-5" />
                     <div className="font-mono text-xs text-dim space-y-1">
                       <div>TOTAL NODES: {ECOSYSTEM_NODES.length}</div>
                       <div>CONNECTIONS: {connections.length}</div>
@@ -253,7 +228,6 @@ export default function EcosystemPage() {
         <section className="py-24 px-6 md:px-12 lg:px-20 border-t border-[#0D0D0D]">
           <div className="max-w-6xl mx-auto">
             <Reveal className="mb-14">
-              <span className="sys-label opacity-65 block mb-4">SYSTEM_LOOP // CONTINUOUS IMPROVEMENT</span>
               <h2 className="font-display font-bold text-h2 text-white">The technical loop.</h2>
             </Reveal>
 
@@ -302,10 +276,6 @@ export default function EcosystemPage() {
           ]} />
           <div className="relative max-w-6xl mx-auto text-center">
             <Reveal>
-              <div className="inline-flex items-center gap-2 border border-accent/20 px-4 py-2 mb-8">
-                <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
-                <span className="sys-label">TECHNICAL POSITIONING</span>
-              </div>
               <p className="font-display font-bold text-2xl md:text-3xl text-white max-w-3xl mx-auto leading-relaxed">
                 Awarizon operates as a{' '}
                 <span className="text-accent">global blockchain infrastructure and distribution company</span>{' '}
@@ -319,7 +289,6 @@ export default function EcosystemPage() {
         <section className="py-20 px-6 md:px-12 lg:px-20">
           <div className="max-w-6xl mx-auto flex items-center justify-between flex-wrap gap-8">
             <Reveal>
-              <span className="sys-label opacity-65 block mb-2">NEXT_LAYER</span>
               <p className="font-display font-semibold text-3xl text-white">Why we exist here.</p>
             </Reveal>
             <Reveal delay={0.15}>

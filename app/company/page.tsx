@@ -53,11 +53,6 @@ export default function CompanyPage() {
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-10%,rgba(200,241,63,0.06),transparent)] pointer-events-none" />
 
           <div className="relative z-10 px-6 md:px-12 lg:px-20 pt-28 pb-16 flex flex-col min-h-screen">
-            <div className="flex items-center gap-3 mb-14">
-              <span className="w-1 h-6 bg-accent" />
-              <span className="font-mono text-[10px] tracking-[0.3em] text-accent">COMPANY // ABOUT AWARIZON</span>
-            </div>
-
             <div className="flex-1 flex flex-col justify-center max-w-4xl">
               <Reveal>
                 <h1 className="font-display font-extrabold text-hero text-white mb-8">
@@ -92,9 +87,6 @@ export default function CompanyPage() {
         {/* ── ORIGIN STORY ─────────────────────────────────── */}
         <section className="py-28 px-6 md:px-12 lg:px-20 border-t border-[#0D0D0D] bg-accent-wash">
           <div className="max-w-5xl mx-auto">
-            <Reveal>
-              <span className="sys-label opacity-65 block mb-8">WHY WE STARTED</span>
-            </Reveal>
             <Reveal delay={0.1}>
               <p className="font-display font-extrabold text-statement text-white leading-[1.08] mb-8">
                 Businesses and consumers needed digital and automated systems that actually worked —
@@ -103,10 +95,8 @@ export default function CompanyPage() {
             </Reveal>
             <Reveal delay={0.2}>
               <p className="font-body text-lg text-muted leading-relaxed max-w-3xl">
-                That observation is why Awarizon exists. We started by building the infrastructure layer
-                ourselves — wallets, payments, identity, automation — and proved it in production before
-                packaging it for anyone else. Every system we ship has already run under real conditions,
-                for real users, at scale.
+                So we built the infrastructure ourselves — wallets, payments, identity, automation — and proved it
+                in production. Every system we ship has already run for real users, at scale.
               </p>
             </Reveal>
           </div>
@@ -116,8 +106,6 @@ export default function CompanyPage() {
         <section className="py-24 px-6 md:px-12 lg:px-20 border-t border-[#0D0D0D] bg-accent-wash-soft">
           <div className="max-w-6xl mx-auto">
             <div className="mb-12 reveal">
-              <span className="sys-label opacity-65 block mb-3">HOW WE OPERATE // PRINCIPLES</span>
-              <div className="h-px bg-gradient-to-r from-accent/30 to-transparent mb-6" />
               <h2 className="font-display font-bold text-h2 text-white">
                 What we optimize for.
               </h2>
@@ -140,11 +128,6 @@ export default function CompanyPage() {
         {/* ── TIMELINE ─────────────────────────────────────── */}
         <section className="py-24 px-6 md:px-12 lg:px-20 border-t border-[#0D0D0D]">
           <div className="max-w-5xl mx-auto">
-            <div className="mb-14 reveal">
-              <span className="sys-label opacity-65 block mb-3">TIMELINE // WHERE WE'VE BEEN</span>
-              <div className="h-px bg-gradient-to-r from-accent/30 to-transparent" />
-            </div>
-
             <RevealGroup className="space-y-0" stagger={0.1}>
               {TIMELINE.map((t, i) => (
                 <RevealItem key={t.year}>
@@ -164,11 +147,6 @@ export default function CompanyPage() {
         {/* ── FOUNDER ──────────────────────────────────────── */}
         <section className="py-24 px-6 md:px-12 lg:px-20 border-t border-[#0D0D0D] bg-accent-wash-soft">
           <div className="max-w-5xl mx-auto">
-            <div className="mb-12 reveal">
-              <span className="sys-label opacity-65 block mb-3">LEADERSHIP // FOUNDER</span>
-              <div className="h-px bg-gradient-to-r from-accent/30 to-transparent" />
-            </div>
-
             <Reveal>
               <div className="border border-[#1A1A1A] bg-black p-8 md:p-10">
                 <div className="flex flex-col md:flex-row md:items-start justify-between gap-8">
@@ -203,11 +181,9 @@ export default function CompanyPage() {
 
         {/* ── CTA ──────────────────────────────────────────── */}
         <section className="relative py-32 px-6 md:px-12 lg:px-20 overflow-hidden border-t border-[#0D0D0D]">
-          <div className="absolute inset-0 grid-bg-static opacity-10" />
           <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[60vw] h-[30vw] bg-accent/[0.04] blur-3xl pointer-events-none" />
 
           <div className="relative max-w-4xl mx-auto text-center reveal">
-            <span className="sys-label opacity-65 block mb-6">JOIN US // GET IN TOUCH</span>
             <h2 className="font-display font-extrabold text-white text-statement mb-6">
               Want to build <span className="gradient-text">with us?</span>
             </h2>

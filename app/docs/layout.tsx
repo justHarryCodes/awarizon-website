@@ -85,6 +85,25 @@ const NAV = [
       { id: 'auth-class',  label: 'AwarizonAuth'    },
     ],
   },
+  {
+    id: 'swap-sdk', label: '@awarizon/swap',
+    children: [
+      { id: 'swap-client',  label: 'new SwapClient()' },
+      { id: 'swap-quotes',  label: 'getQuotes()'      },
+      { id: 'swap-execute', label: 'execute()'        },
+      { id: 'swap-proxy',   label: 'Server proxy'     },
+      { id: 'swap-assets',  label: 'Tokens & chains'  },
+    ],
+  },
+  {
+    id: 'swap-widget', label: '@awarizon/swap-widget',
+    children: [
+      { id: 'widget-usage',    label: '<SwapWidget />' },
+      { id: 'widget-theming',  label: 'Theming'        },
+      { id: 'widget-headless', label: 'useSwap()'      },
+    ],
+  },
+  { id: 'swap-token-list', label: 'Swap Token List' },
   { id: 'chains', label: 'Supported Chains' },
   { id: 'errors', label: 'Error Handling'   },
   { id: 'types',  label: 'TypeScript Types' },
