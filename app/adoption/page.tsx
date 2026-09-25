@@ -96,7 +96,8 @@ export default function AdoptionPage() {
                     Distribution completes the protocol.
                   </p>
                   <p className="font-body text-base text-dim/90 leading-relaxed max-w-md">
-                    Many teams can ship a smart contract. Few can drive real-world adoption — Awarizon does both.
+                    Many teams can ship a smart contract. Fewer can drive real-world Web3 adoption.
+                    Awarizon is built around both.
                   </p>
                 </motion.div>
 

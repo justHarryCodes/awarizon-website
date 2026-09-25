@@ -95,8 +95,10 @@ export default function CompanyPage() {
             </Reveal>
             <Reveal delay={0.2}>
               <p className="font-body text-lg text-muted leading-relaxed max-w-3xl">
-                So we built the infrastructure ourselves — wallets, payments, identity, automation — and proved it
-                in production. Every system we ship has already run for real users, at scale.
+                That observation is why Awarizon exists. We started by building the infrastructure layer
+                ourselves — wallets, payments, identity, automation — and proved it in production before
+                packaging it for anyone else. Every system we ship has already run under real conditions,
+                for real users, at scale.
               </p>
             </Reveal>
           </div>

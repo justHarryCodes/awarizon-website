@@ -35,6 +35,13 @@ const getSolana = () => (typeof window === "undefined" ? undefined : window.phan
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
+const FEATURES = [
+  "Same-chain swaps on EVM via 0x + LI.FI",
+  "Solana swaps via Jupiter",
+  "Cross-chain EVM ↔ EVM and EVM ↔ Solana via LI.FI",
+  "1,000+ tokens from a hosted list, or paste any address",
+];
+
 export default function SwapDemo({ zeroExEnabled }: { zeroExEnabled: boolean }) {
   const client = useMemo(
     () =>
@@ -109,8 +116,28 @@ export default function SwapDemo({ zeroExEnabled }: { zeroExEnabled: boolean }) 
               Swap anything. <span className="gradient-text">Across any chain.</span>
             </h1>
             <p className="font-body text-lg text-muted leading-relaxed mb-10 max-w-lg">
-              The same widget you can drop into your app with one component. It finds the best route and handles approvals, signing and bridging.
+              This is the same widget you can drop into your app with one component. It finds the best route across
+              aggregators and bridges, then handles approvals, signing and bridge tracking for you.
             </p>
+
+            <ul className="space-y-3 mb-10">
+              {FEATURES.map((f) => (
+                <li key={f} className="flex items-start gap-3">
+                  <span className="w-1.5 h-1.5 bg-accent mt-2 shrink-0" />
+                  <span className="font-body text-base text-muted">{f}</span>
+                </li>
+              ))}
+            </ul>
+
+            <div className="border border-[#1E1E1E] bg-[#070707] mb-8 max-w-lg">
+              <div className="px-4 py-2 border-b border-[#1E1E1E] font-mono text-[10px] text-dim tracking-widest">INSTALL</div>
+              <pre className="px-4 py-4 font-mono text-[13px] text-white overflow-x-auto">
+                <span className="text-accent">npm</span> i @awarizon/swap-widget @solana/web3.js
+              </pre>
+              <div className="px-4 py-2 border-t border-[#1E1E1E] font-mono text-[12px] text-muted overflow-x-auto whitespace-nowrap">
+                {"<SwapWidget evmProvider={window.ethereum} solanaWallet={wallet} />"}
+              </div>
+            </div>
 
             <div className="flex flex-wrap gap-3">
               <Link href="/docs/swap-widget" className="font-mono text-[10px] tracking-widest px-5 py-3 bg-accent text-black font-semibold hover:bg-white transition-colors">
@@ -141,7 +168,9 @@ export default function SwapDemo({ zeroExEnabled }: { zeroExEnabled: boolean }) 
               style={{ "--awz-accent-fg": "#000", "--awz-bg": "#0A0A0A", "--awz-surface": "#141414", "--awz-surface-2": "#1C1C1C", "--awz-border": "#222", fontFamily: "var(--font-body)", maxWidth: 440 } as CSSProperties}
             />
             {notice && <p className="mt-4 font-mono text-[11px] text-accent/80">{notice}</p>}
-            <p className="mt-4 font-mono text-[10px] text-dim tracking-wide">Real mainnet transactions.</p>
+            <p className="mt-4 font-mono text-[10px] text-dim tracking-wide leading-relaxed">
+              Real mainnet transactions. Quotes come from 0x, Jupiter and LI.FI; Awarizon never holds your funds.
+            </p>
           </Reveal>
         </div>
       </section>

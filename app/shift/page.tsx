@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
@@ -22,21 +22,21 @@ const PROBLEM_LAYERS = [
     icon: "/elements/signal-01.png",
     title: "Web3 setup takes months.",
     sub: "It should take days.",
-    body: "Teams lose months to RPCs, ABIs and wallet setup. Awarizon removes that work.",
+    body: "Dev teams spend 3–6 months configuring RPCs, managing ABIs, setting up wallets, and handling chain differences — before writing a single line of product code. Awarizon eliminates that entirely.",
   },
   {
     num: "02",
     icon: "/elements/signal-02.png",
     title: "Fragmented tooling kills velocity.",
     sub: "One SDK changes everything.",
-    body: "Scattered libraries force every team to rebuild the basics. One unified SDK fixes that.",
+    body: "Scattered libraries, inconsistent APIs, and no clear integration pathway force developers to reinvent the wheel on every project. A unified, production-ready SDK changes the equation.",
   },
   {
     num: "03",
     icon: "/elements/signal-03.png",
     title: "Businesses need on-chain capability",
     sub: "without a dedicated blockchain team.",
-    body: "Payments, identity and wallets shouldn't need specialists. Any technical team can ship them with us.",
+    body: "Startups and enterprises shouldn't need specialist Web3 engineers to integrate payments, identity, or wallets. Awarizon's modular infrastructure makes on-chain operations accessible to any technical team.",
   },
 ];
 
@@ -115,6 +115,7 @@ function ComparisonIllustration() {
 
 export default function ShiftPage() {
   const heroVisible = true;
+  const [tooltip, setTooltip] = useState<string | null>(null);
 
   // Vanta
   const vantaRef = useRef<HTMLDivElement>(null);
@@ -172,7 +173,7 @@ export default function ShiftPage() {
               animate={heroVisible ? "show" : "hidden"}
               variants={{ show: { transition: { staggerChildren: 0.13 } } }}
             >
-              <h1 className="font-display font-extrabold text-hero overflow-hidden">
+              <h1 className="font-display font-extrabold text-hero mb-10 overflow-hidden">
                 {[
                   { text: "Build", cls: "block text-white" },
                   { text: "on-chain Products.", cls: "block text-white" },
@@ -196,15 +197,59 @@ export default function ShiftPage() {
                   </div>
                 ))}
               </h1>
-              <motion.p
-                className="font-body text-lg md:text-xl text-muted mt-8 max-w-md"
+              <motion.div
+                className="max-w-lg w-full mx-auto"
                 variants={{
-                  hidden: { opacity: 0, y: 16 },
-                  show: { opacity: 1, y: 0, transition: { duration: 0.7, ease } },
+                  hidden: { opacity: 0, y: 20 },
+                  show: {
+                    opacity: 1,
+                    y: 0,
+                    transition: { duration: 0.7, ease },
+                  },
                 }}
               >
-                SDK, wallets and payments for teams shipping Web3. Go from idea to mainnet in days, not months.
-              </motion.p>
+                <p className="font-body text-xl md:text-2xl text-muted mb-5">
+                  Infrastructure for{" "}
+                  {["developers", "startups", "businesses"].map(
+                    (word, i, arr) => (
+                      <span key={word}>
+                        <button
+                          className="text-white/80 border-b border-dashed border-accent/30 hover:border-accent hover:text-accent transition-colors duration-200"
+                          onMouseEnter={() => setTooltip(word)}
+                          onMouseLeave={() => setTooltip(null)}
+                        >
+                          {word}
+                        </button>
+                        {i < arr.length - 1 ? ", " : "."}
+                      </span>
+                    ),
+                  )}
+                </p>
+                <p className="font-body text-lg text-dim/90 leading-relaxed">
+                  One SDK, ready-made APIs, wallet systems, and payment
+                  infrastructure — everything needed to ship production-ready
+                  Web3 with{" "}
+                  <span className="text-white">90% less setup time.</span>
+                </p>
+
+                {tooltip && (
+                  <motion.div
+                    className="mt-4 px-4 py-3 border border-accent/20 bg-accent/5"
+                    initial={{ opacity: 0, y: 6 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.25 }}
+                  >
+                    <p className="font-mono text-sm text-accent/90">
+                      {tooltip === "developers" &&
+                        "Ship EVM integrations in hours. The @awarizon/web3 SDK handles RPC, ABIs, wallets, and codegen — no boilerplate."}
+                      {tooltip === "startups" &&
+                        "Go from idea to on-chain product without hiring a blockchain team. Wallets, payments, identity, and more."}
+                      {tooltip === "businesses" &&
+                        "Integrate stablecoin payments, smart contracts, and digital identity into existing products — no Web3 team required."}
+                    </p>
+                  </motion.div>
+                )}
+              </motion.div>
             </motion.div>
 
             {/* Scroll indicator */}
@@ -255,16 +300,19 @@ export default function ShiftPage() {
             <div className="grid lg:grid-cols-2 gap-16 items-start">
               <div>
                 <Reveal>
-                  <h2 className="font-display font-extrabold text-black text-statement mb-4">
-                    Everything to build on-chain.
+                  <h2 className="font-display font-extrabold text-black text-statement mb-6">
+                    Everything your team needs to build on-chain — without
+                    starting from zero.
                   </h2>
-                  <p className="font-body text-lg text-black/70 mb-10">
-                    Skip months of RPCs, ABIs and wallet plumbing. Our SDK, APIs and payment rails are ready from day one.
+                  <p className="font-body text-lg text-black/85 leading-relaxed mb-10 max-w-md">
+                    Awarizon provides the SDK, APIs, wallet systems, payment
+                    infrastructure, and developer tools that eliminate months of
+                    blockchain setup. Ship what matters — not infrastructure.
                   </p>
                 </Reveal>
 
                 <Reveal delay={0.15}>
-                  <div className="grid grid-cols-3 gap-px bg-black/10">
+                  <div className="grid grid-cols-3 gap-px bg-black/10 mb-8">
                     {[
                       { to: 5, suffix: "×", label: "Faster development" },
                       { to: 90, suffix: "%", label: "Less setup time" },
@@ -278,6 +326,23 @@ export default function ShiftPage() {
                           {s.label}
                         </div>
                       </div>
+                    ))}
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    {[
+                      "SDK",
+                      "REST APIs",
+                      "Wallet Infrastructure",
+                      "Payments",
+                      "Identity",
+                      "Smart Contracts",
+                    ].map((p) => (
+                      <span
+                        key={p}
+                        className="font-mono text-[9px] px-3 py-1.5 border border-black/20 text-black/65 tracking-widest"
+                      >
+                        {p}
+                      </span>
                     ))}
                   </div>
                 </Reveal>
@@ -355,10 +420,31 @@ export default function ShiftPage() {
           <div className="absolute inset-0 bg-gradient-to-r from-black via-black/70 to-black pointer-events-none" />
           <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[50vw] h-[50vw] rounded-full bg-accent/[0.03] blur-3xl pointer-events-none" />
           <Reveal className="relative max-w-4xl">
-            <blockquote className="font-display font-bold leading-tight text-3xl md:text-5xl text-white">
-              From months of setup to{" "}
-              <span className="text-accent">shipping in days.</span>
+            <blockquote className="font-display font-bold leading-tight text-3xl md:text-5xl text-white mb-10">
+              "We build the infrastructure that moves{" "}
+              <span className="text-accent">developers and businesses</span>{" "}
+              from months of setup to shipping on-chain in days."
             </blockquote>
+            <div className="flex items-center gap-8 flex-wrap">
+              <div className="flex items-center gap-4">
+                <div className="w-px h-10 bg-accent/40" />
+                <div>
+                  <p className="font-mono text-xs text-accent">POSITIONING</p>
+                  <p className="font-body text-base text-muted">
+                    Blockchain Infrastructure & Developer Platform
+                  </p>
+                </div>
+              </div>
+              <div className="flex items-center gap-4">
+                <div className="w-px h-10 bg-[#333]" />
+                <div>
+                  <p className="font-mono text-xs text-dim">SDK</p>
+                  <p className="font-body text-base text-muted">
+                    @awarizon/web3 · @awarizon/react · @awarizon/swap · @awarizon/cli
+                  </p>
+                </div>
+              </div>
+            </div>
           </Reveal>
         </section>
 
@@ -368,13 +454,30 @@ export default function ShiftPage() {
 
           <div className="relative max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             <Reveal x={-24} y={0}>
-              <h2 className="font-display font-extrabold text-white text-statement mb-4">
+              <h2 className="font-display font-extrabold text-white text-statement mb-6">
                 One SDK. Any chain.{" "}
                 <span className="gradient-text">Ship faster.</span>
               </h2>
-              <p className="font-body text-lg text-muted mb-10">
-                Typed reads, writes and events across 15+ EVM chains. No RPC setup, no ABI juggling, no boilerplate.
+              <p className="font-body text-lg text-muted leading-relaxed mb-10 max-w-lg">
+                <code className="font-mono text-accent text-sm">
+                  @awarizon/web3
+                </code>{" "}
+                gives developers typed reads, writes, events, and codegen across
+                15+ EVM chains — without configuring RPC providers, managing
+                ABIs, or writing boilerplate.
               </p>
+              <div className="flex flex-wrap gap-x-8 gap-y-3 mb-10">
+                {["15+ EVM chains", "Full TypeScript", "Zero config reads"].map(
+                  (f) => (
+                    <div key={f} className="flex items-center gap-2">
+                      <span className="w-1 h-1 bg-accent flex-shrink-0" />
+                      <span className="font-mono text-[11px] text-muted tracking-wide">
+                        {f}
+                      </span>
+                    </div>
+                  ),
+                )}
+              </div>
               <div className="flex flex-wrap gap-3">
                 <Link
                   href="/sdk"
@@ -403,11 +506,8 @@ export default function ShiftPage() {
           <div className="max-w-6xl mx-auto">
             <Reveal className="mb-10">
               <h2 className="font-display font-bold text-h2 text-white">
-                Every major chain.
+                Supported across every major chain.
               </h2>
-              <p className="font-body text-lg text-muted mt-4">
-                EVM-native and chain-agnostic. Deploy once, run on any supported network.
-              </p>
             </Reveal>
 
             <RevealGroup
@@ -461,8 +561,9 @@ export default function ShiftPage() {
               <p className="font-display font-semibold text-3xl text-white">
                 Build on the infrastructure.
               </p>
-              <p className="font-body text-base text-dim mt-2">
-                Start with the SDK and scale on our rails. Distribution is part of the product.
+              <p className="font-body text-base text-dim mt-2 max-w-sm">
+                From developer SDK to full business adoption — distribution is
+                part of the product.
               </p>
             </Reveal>
             <Reveal delay={0.15} className="flex flex-wrap gap-3">

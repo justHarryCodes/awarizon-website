@@ -22,47 +22,50 @@ const PACKAGES = [
   {
     name:  '@awarizon/web3',
     badge: 'CORE',
-    desc:  'The framework-agnostic EVM client. Reads, writes, events and multicall.',
+    desc:  'Framework-agnostic EVM client. Reads, writes, events, multicall, gas estimation. Runs in Node.js, browser, and Edge runtimes.',
+    tags:  ['Node.js', 'Browser', 'Edge', 'ESM'],
   },
   {
     name:  '@awarizon/react',
     badge: 'HOOKS',
-    desc:  'React hooks on top of the core SDK. Loading, errors and refetching built in.',
+    desc:  'React 18+ hooks built on the core SDK. Automatic loading states, error handling, re-fetching, and cleanup on unmount.',
+    tags:  ['React 18+', 'Next.js', 'Vite', 'Remix'],
   },
   {
     name:  '@awarizon/cli',
     badge: 'CODEGEN',
-    desc:  'Generate typed clients and React hooks from any ABI. No boilerplate.',
+    desc:  'Generate fully typed TypeScript or JavaScript contract clients and React hooks from any ABI. No boilerplate, no repetition.',
+    tags:  ['TypeScript', 'JavaScript', 'ABI → Types', 'CLI'],
   },
 ]
 
 const FEATURES = [
-  { icon: '⬡', title: '15+ EVM chains', body: 'Mainnets and testnets, one config.' },
-  { icon: '◈', title: 'Full TypeScript types', body: 'Every call typed end to end.' },
-  { icon: '◉', title: 'Zero config reads', body: 'No wallet needed to read.' },
-  { icon: '◌', title: 'React hooks included', body: 'Loading, error and refetch built in.' },
-  { icon: '◫', title: 'CLI code generation', body: 'One command from ABI to client.' },
-  { icon: '◇', title: 'Event subscriptions', body: 'Live events with clean teardown.' },
-  { icon: '⬡', title: 'Multicall batching', body: 'Many reads, one RPC call.' },
-  { icon: '◈', title: 'Named registry', body: 'Register once, use by name.' },
+  { icon: '⬡', title: '15+ EVM chains', body: 'Base, Ethereum, Polygon, Arbitrum, Optimism, BNB, Avalanche, zkSync, Linea, Scroll, Zora, Celo, Gnosis, Mantle, Fantom — and testnets.' },
+  { icon: '◈', title: 'Full TypeScript types', body: 'Every method, argument, and return value is typed. ABI-generated clients take it further — zero any at call sites.' },
+  { icon: '◉', title: 'Zero config reads', body: 'Read any view/pure function with zero wallet setup. Just a contract address, ABI, and API key.' },
+  { icon: '◌', title: 'React hooks included', body: 'useReadContract, useWriteContract, useContract — built-in loading, error, and refetch state. No extra library.' },
+  { icon: '◫', title: 'CLI code generation', body: 'One command converts any ABI into a typed class and React hooks. Run it once, never write boilerplate again.' },
+  { icon: '◇', title: 'Event subscriptions', body: 'Real-time on-chain events via contract.on("Transfer", cb). Returns an unsubscribe function for clean teardown.' },
+  { icon: '⬡', title: 'Multicall batching', body: 'Batch multiple reads into a single RPC round-trip with awz.multicall(). Falls back gracefully on chains without multicall3.' },
+  { icon: '◈', title: 'Named registry', body: 'Register contracts once, reference by name everywhere. awz.register("USDC", { address, abi }) then awz.use("USDC").' },
 ]
 
 const CHAINS = [
-  { id: 'base',      label: 'Base' },
-  { id: 'ethereum',  label: 'Ethereum' },
-  { id: 'polygon',   label: 'Polygon' },
-  { id: 'arbitrum',  label: 'Arbitrum One' },
-  { id: 'optimism',  label: 'Optimism' },
-  { id: 'bnb',       label: 'BNB Chain' },
-  { id: 'avalanche', label: 'Avalanche' },
-  { id: 'zksync',    label: 'zkSync Era' },
-  { id: 'linea',     label: 'Linea' },
-  { id: 'scroll',    label: 'Scroll' },
-  { id: 'zora',      label: 'Zora' },
-  { id: 'mantle',    label: 'Mantle' },
-  { id: 'celo',      label: 'Celo' },
-  { id: 'gnosis',    label: 'Gnosis' },
-  { id: 'fantom',    label: 'Fantom' },
+  { id: 'base',      label: 'Base', tag: 'Recommended' },
+  { id: 'ethereum',  label: 'Ethereum', tag: 'Mainnet' },
+  { id: 'polygon',   label: 'Polygon', tag: 'PoS' },
+  { id: 'arbitrum',  label: 'Arbitrum One', tag: 'L2' },
+  { id: 'optimism',  label: 'Optimism', tag: 'L2' },
+  { id: 'bnb',       label: 'BNB Chain', tag: 'BSC' },
+  { id: 'avalanche', label: 'Avalanche', tag: 'C-Chain' },
+  { id: 'zksync',    label: 'zkSync Era', tag: 'ZK-L2' },
+  { id: 'linea',     label: 'Linea', tag: 'ZK-L2' },
+  { id: 'scroll',    label: 'Scroll', tag: 'ZK-L2' },
+  { id: 'zora',      label: 'Zora', tag: 'OP-Stack' },
+  { id: 'mantle',    label: 'Mantle', tag: 'L2' },
+  { id: 'celo',      label: 'Celo', tag: 'EVM' },
+  { id: 'gnosis',    label: 'Gnosis', tag: 'xDai' },
+  { id: 'fantom',    label: 'Fantom', tag: 'EVM' },
 ]
 
 const EXAMPLES = [
@@ -182,6 +185,7 @@ const FRAMEWORKS = [
     tab:     'Next.js',
     filename: 'app/layout.tsx',
     install:  'npx create-awarizon-app my-app --template nextjs',
+    tags:    ['App Router', 'Server + Client', 'NEXT_PUBLIC_ env'],
     tree: `my-app/
 ├── app/
 │   ├── layout.tsx       ← AwarizonProvider wired here
@@ -220,6 +224,7 @@ export const awz = new AwarizonWeb3({
     tab:     'React + Vite',
     filename: 'src/main.tsx',
     install:  'npx create-awarizon-app my-app --template react',
+    tags:    ['Vite 5', 'React 18+', 'VITE_ env'],
     tree: `my-app/
 ├── src/
 │   ├── main.tsx         ← AwarizonProvider wired here
@@ -258,6 +263,7 @@ const { data: symbol } = useReadContract({
     tab:     'Expo',
     filename: 'app/_layout.tsx',
     install:  'npx create-awarizon-app my-app --template expo',
+    tags:    ['Expo SDK 51', 'Expo Router', 'React Native', 'EXPO_PUBLIC_ env'],
     tree: `my-app/
 ├── app/
 │   ├── _layout.tsx      ← AwarizonProvider + Stack nav
@@ -320,7 +326,7 @@ export default function SDKPage() {
               {/* Left — staggered headline */}
               <div>
                 <motion.h1
-                  className="font-display font-extrabold text-white text-hero mb-6"
+                  className="font-display font-extrabold text-white text-hero mb-8"
                   initial="hidden"
                   animate="show"
                   variants={{ show: { transition: { staggerChildren: 0.1, delayChildren: 0.3 } } }}
@@ -344,9 +350,18 @@ export default function SDKPage() {
                   ))}
                 </motion.h1>
 
-                <p className="font-body text-xl text-muted mb-10 max-w-md">
-                  Reads, writes, events and codegen across 15+ EVM chains. Works in Node.js, the browser and Edge.
+                <p className="font-body text-xl text-muted leading-relaxed mb-6 max-w-md">
+                  EVM infrastructure for developers who need to ship — reads, writes, events,
+                  and typed codegen across 15+ chains. Works in Node.js, browser, and Edge.
                 </p>
+
+                <div className="flex flex-wrap gap-2 mb-10">
+                  {['TypeScript', 'React hooks', '15+ chains', 'CLI codegen', 'No wallet for reads'].map(t => (
+                    <span key={t} className="font-mono text-[10px] tracking-widest px-3 py-1.5 border border-[#2A2A2A] text-dim">
+                      {t}
+                    </span>
+                  ))}
+                </div>
 
                 <div className="flex flex-wrap gap-3 mb-12">
                   <Link
@@ -428,10 +443,6 @@ export default function SDKPage() {
         {/* ── PACKAGES ─────────────────────────────────────── */}
         <section className="py-24 px-6 md:px-12 lg:px-20 border-t border-[#0D0D0D] bg-accent-wash">
           <div className="max-w-6xl mx-auto">
-            <div className="mb-12 reveal">
-              <h2 className="font-display font-bold text-h2 text-white">Three packages.</h2>
-            </div>
-
             <RevealGroup className="grid md:grid-cols-3 gap-px bg-[#111]" stagger={0.1}>
               {PACKAGES.map((pkg) => (
                 <RevealItem key={pkg.name}>
@@ -440,8 +451,15 @@ export default function SDKPage() {
                       <span className="font-mono text-[9px] tracking-widest px-2 py-1 border border-accent/20 text-accent/70">{pkg.badge}</span>
                       <span className="w-1.5 h-1.5 rounded-full bg-accent/60 animate-pulse" />
                     </div>
-                    <code className="font-mono text-[15px] text-white block mb-2">{pkg.name}</code>
-                    <p className="font-body text-sm text-muted">{pkg.desc}</p>
+                    <code className="font-mono text-[15px] text-white block mb-3">{pkg.name}</code>
+                    <p className="font-body text-sm text-muted leading-relaxed mb-5">{pkg.desc}</p>
+                    <div className="flex flex-wrap gap-1.5">
+                      {pkg.tags.map(t => (
+                        <span key={t} className="font-mono text-[9px] px-2 py-1 bg-[#0A0A0A] text-dim border border-[#1A1A1A] group-hover:border-accent/15 group-hover:text-dim/80 transition-colors">
+                          {t}
+                        </span>
+                      ))}
+                    </div>
                   </div>
                 </RevealItem>
               ))}
@@ -492,9 +510,11 @@ export default function SDKPage() {
           <div className="max-w-6xl mx-auto">
             <div className="mb-10 reveal">
               <h2 className="font-display font-bold text-h2 text-white mb-4">
-                Scaffold a project<br className="hidden sm:block" /> in one command.
+                Scaffold a full project<br className="hidden sm:block" /> in one command.
               </h2>
-              <p className="font-body text-lg text-muted">Next.js, React + Vite or Expo, wired with your API key. A live on-chain read works on first run.</p>
+              <p className="font-body text-lg text-muted max-w-xl">
+                One command gives you a complete starter wired with <code className="font-mono text-accent/80">AwarizonProvider</code>, env vars, and a live on-chain read demo — for Next.js, React + Vite, or Expo.
+              </p>
             </div>
 
             <div className="mb-8 reveal">
@@ -535,6 +555,13 @@ export default function SDKPage() {
                     filename={FRAMEWORKS[activeFramework].filename}
                     code={FRAMEWORKS[activeFramework].code}
                   />
+                  <div className="px-6 pb-5 flex flex-wrap gap-2">
+                    {FRAMEWORKS[activeFramework].tags.map(t => (
+                      <span key={t} className="font-mono text-[9px] px-2 py-1 bg-[#0A0A0A] text-dim border border-[#1A1A1A]">
+                        {t}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </div>
 
@@ -551,7 +578,7 @@ export default function SDKPage() {
           <div className="max-w-6xl mx-auto">
             <div className="mb-12 reveal">
               <h2 className="font-display font-bold text-h2 text-white">
-                What it does.
+                Everything you need to build on-chain.
               </h2>
             </div>
 
@@ -560,8 +587,8 @@ export default function SDKPage() {
                 <RevealItem key={f.title} y={20}>
                   <div className="bg-black p-6 hover:bg-[#030303] transition-colors group h-full">
                     <span className="font-mono text-xl text-accent/40 group-hover:text-accent/70 transition-colors block mb-4">{f.icon}</span>
-                    <h3 className="font-display font-semibold text-white text-h4 mb-1">{f.title}</h3>
-                    <p className="font-body text-[13px] text-dim">{f.body}</p>
+                    <h3 className="font-display font-semibold text-white text-h4 mb-2">{f.title}</h3>
+                    <p className="font-body text-[13px] text-dim leading-relaxed">{f.body}</p>
                   </div>
                 </RevealItem>
               ))}
@@ -612,11 +639,11 @@ export default function SDKPage() {
           <div className="max-w-6xl mx-auto">
             <div className="mb-10 reveal">
               <h2 className="font-display font-bold text-h2 text-white">
-                Every chain that matters.
+                One SDK. Every chain that matters.
               </h2>
             </div>
 
-            <RevealGroup className="grid grid-cols-3 sm:grid-cols-5 gap-px bg-[#111]" stagger={0.04}>
+            <RevealGroup className="grid grid-cols-3 sm:grid-cols-5 gap-px bg-[#111] mb-4" stagger={0.04}>
               {CHAINS.map((c) => (
                 <RevealItem key={c.id} y={12}>
                   <div className="bg-[#030303] px-4 py-4 hover:bg-[#060606] transition-colors group">
@@ -625,10 +652,15 @@ export default function SDKPage() {
                       {`"${c.id}"`}
                     </code>
                     <span className="font-body text-[11px] text-dim block">{c.label}</span>
+                    <span className="font-mono text-[9px] text-dim/70 block">{c.tag}</span>
                   </div>
                 </RevealItem>
               ))}
             </RevealGroup>
+
+            <p className="font-mono text-[10px] text-dim tracking-widest">
+              + TESTNETS: sepolia, base-sepolia, polygon-amoy, arbitrum-sepolia, optimism-sepolia
+            </p>
           </div>
         </section>
 
@@ -641,13 +673,15 @@ export default function SDKPage() {
 
           <div className="relative max-w-4xl mx-auto text-center reveal">
             <h2
-              className="font-display font-extrabold text-white text-statement mb-4"
+              className="font-display font-extrabold text-white text-statement mb-6"
             >
               Start building on-chain<br />
               <span className="gradient-text">in 60 seconds.</span>
             </h2>
 
-            <p className="font-body text-lg text-muted mb-10">Get an API key and install the SDK. Your first on-chain read takes a minute.</p>
+            <p className="font-body text-lg text-muted mb-10 max-w-xl mx-auto">
+              Get an API key from your dashboard, run the install command, and make your first on-chain read before the page finishes loading.
+            </p>
 
             <div className="max-w-md mx-auto mb-10">
               <ShellBlock command="npm install @awarizon/web3 @awarizon/react" label="STEP 1 — INSTALL" />

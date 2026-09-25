@@ -210,7 +210,8 @@ export default function EcosystemPage() {
                 ) : (
                   <div className="border border-[#1A1A1A] bg-[#040404] p-6">
                     <p className="font-body text-base text-muted leading-relaxed mb-5">
-                      Infrastructure creates capability and distribution creates reach. Market feedback closes the loop.
+                      Each layer strengthens the next. Blockchain infrastructure creates capability.
+                      Distribution creates global reach. Market feedback closes the loop.
                     </p>
                     <div className="font-mono text-xs text-dim space-y-1">
                       <div>TOTAL NODES: {ECOSYSTEM_NODES.length}</div>
