@@ -227,18 +227,28 @@ export default function Footer() {
         {/* Learn Web3 row */}
         <div className="mb-12 pt-10 border-t border-[#0D0D0D]">
           <div className="flex items-center gap-4 mb-6">
-            <h4 className="sys-label opacity-50 whitespace-nowrap">LEARN WEB3</h4>
+            <h4 className="sys-label opacity-50 whitespace-nowrap">
+              LEARN WEB3
+            </h4>
             <div className="flex-1 h-px bg-gradient-to-r from-accent/20 to-transparent" />
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-x-4 gap-y-2.5">
             {LEARN_ARTICLES.map((article) => (
               <Link
                 key={article.slug}
-                href={article.slug === "what-is-awarizon" ? "/learn" : `/learn/${article.slug}`}
+                href={
+                  article.slug === "what-is-awarizon"
+                    ? "/learn"
+                    : `/learn/${article.slug}`
+                }
                 className="group flex items-start gap-2 text-muted hover:text-white transition-colors duration-200"
               >
-                <span className="font-mono text-[10px] text-dim group-hover:text-accent transition-colors mt-0.5 flex-shrink-0">→</span>
-                <span className="font-body text-sm leading-snug">{article.title}</span>
+                <span className="font-mono text-[10px] text-dim group-hover:text-accent transition-colors mt-0.5 flex-shrink-0">
+                  →
+                </span>
+                <span className="font-body text-sm leading-snug">
+                  {article.title}
+                </span>
               </Link>
             ))}
           </div>
@@ -253,6 +263,20 @@ export default function Footer() {
             <span className="font-mono text-[10px] text-dim tracking-widest">
               © {new Date().getFullYear()} AWARIZON LTD. ALL RIGHTS RESERVED.
             </span>
+            <span className="font-mono text-[10px] text-[#1F1F1F]">|</span>
+            <Link
+              href="/policy"
+              className="font-mono text-[10px] text-dim hover:text-accent transition-colors duration-200 tracking-widest"
+            >
+              PRIVACY POLICY
+            </Link>
+            <span className="font-mono text-[10px] text-[#1F1F1F]">|</span>
+            <Link
+              href="/terms"
+              className="font-mono text-[10px] text-dim hover:text-accent transition-colors duration-200 tracking-widest"
+            >
+              TERMS OF USE
+            </Link>
             <span className="font-mono text-[10px] text-[#1F1F1F]">|</span>
             <span className="font-mono text-[10px] text-dim tracking-widest">
               AWZ_GLOBAL_2024
